@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileHandler {
-    List<String> lines = new ArrayList<>();
-    List<User> users = new ArrayList<>();
-    final String FILE_PATH = "C:\\Users\\armyl\\IdeaProjects\\GOIT 10\\src\\task_2\\file.txt";
-    final String USER_FILE_PATH = "C:\\Users\\armyl\\IdeaProjects\\goit_10_hw_maven\\src\\main\\java\\org\\example\\task_2\\user.json";
+    private List<String> lines = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
+    private final String FILE_PATH = "C:\\Users\\armyl\\IdeaProjects\\GOIT 10\\src\\task_2\\file.txt";
+    private final String USER_FILE_PATH = "C:\\Users\\armyl\\IdeaProjects\\goit_10_hw_maven\\src\\main\\java\\org\\example\\task_2\\user.json";
     private void readFile()
     {
         // Відкриття файлу file.txt та зчитування його рядків
@@ -47,11 +47,11 @@ public class FileHandler {
             }
         }
     }
-    private void clearUserFile()
+    public void clearUserFile()
     {
         // очищення файлу
-        try (RandomAccessFile raf = new RandomAccessFile(USER_FILE_PATH, "rw")) {
-            raf.setLength(0); // очистити файл
+        try (FileWriter writer = new FileWriter(USER_FILE_PATH)) {
+            writer.write("");// очистити файл
         } catch (IOException e) {
             e.printStackTrace();
         }

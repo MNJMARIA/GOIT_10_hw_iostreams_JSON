@@ -1,17 +1,14 @@
 package org.example.task_3;
 
-import org.example.task_2.User;
-
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Reader {
-    List<String> lines = new ArrayList<>();
-    List<String> words = new ArrayList<>();
-    public void readFile()
+    private List<String> lines = new ArrayList<>();
+    private List<String> wordsList = new ArrayList<>();
+    private Map<String, Integer> result = new HashMap<>();
+    private void readFile()
     {
         final String FILE_PATH = "C:\\Users\\armyl\\IdeaProjects\\GOIT 10\\src\\task_3\\words.txt";
         try (FileInputStream fis = new FileInputStream(FILE_PATH)) {
@@ -25,16 +22,39 @@ public class Reader {
             e.printStackTrace();
         }
     }
-    /*public void createListOfWords()
+    private void createListOfWords()
     {
         for (String line: lines) {
             String[] parts = line.split(" ");
-            try {
-                String word = (parts[0], parts[1]);
-                words.add(word); //додали в список
-            } catch(NumberFormatException e) {
-                System.err.println("Некоректні дані користувача у рядку: " + line);
+            wordsList.addAll(Arrays.asList(parts));
+        }
+    }
+    public void countTheFrequencyOfWords()
+    {
+        readFile();
+        createListOfWords();
+
+        for(String word: wordsList)
+        {
+            if(!result.containsKey(word))
+            {
+                //якщо слова немає записати і сказати, що його кількість 1
+                result.put(word, 1);
             }
-    }*///TODO розділення рядків на лова(записати слова в список)
-    //TODO інше завдання
+            else
+            {
+                //якщо ж це слово вже є в результаті,
+                // тоді дізнатись його кількість(value) і додати 1
+                int count = result.get(word);
+                result.put(word, count + 1);
+            }
+        }
+
+        // Entry є вкладеним інтерфейсом в Java-колекції Map,
+        // який представляє одну пару ключ-значення в мапі.
+        for(Map.Entry<String, Integer> entry : result.entrySet())
+        {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+    }
 }
