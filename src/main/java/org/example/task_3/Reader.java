@@ -10,8 +10,7 @@ public class Reader {
     private Map<String, Integer> result = new HashMap<>();
     private void readFile()
     {
-        final String FILE_PATH = "C:\\Users\\armyl\\IdeaProjects\\GOIT 10\\src\\task_3\\words.txt";
-        try (FileInputStream fis = new FileInputStream(FILE_PATH)) {
+        try (FileInputStream fis = new FileInputStream("words.txt")) {
             Scanner scanner = new Scanner(fis);
 
             while (scanner.hasNextLine()) {

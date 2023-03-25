@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Reader {
     public void readFile()
     {
-        final String FILE_PATH = "C:\\Users\\armyl\\IdeaProjects\\GOIT 10\\src\\task_1\\file.txt";
-        try (FileInputStream fis = new FileInputStream(FILE_PATH)) {
+        //final String FILE_PATH = "C:\\Users\\armyl\\IdeaProjects\\GOIT 10\\src\\task_1\\file.txt";
+        try (FileInputStream fis = new FileInputStream("file1.txt")) {
             Scanner scanner = new Scanner(fis);
 
             while (scanner.hasNextLine()) {

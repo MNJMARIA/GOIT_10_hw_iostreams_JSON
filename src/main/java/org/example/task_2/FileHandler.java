@@ -12,13 +12,11 @@ import java.util.Scanner;
 public class FileHandler {
     private List<String> lines = new ArrayList<>();
     private List<User> users = new ArrayList<>();
-    private final String FILE_PATH = "C:\\Users\\armyl\\IdeaProjects\\GOIT 10\\src\\task_2\\file.txt";
-    private final String USER_FILE_PATH = "C:\\Users\\armyl\\IdeaProjects\\goit_10_hw_maven\\src\\main\\java\\org\\example\\task_2\\user.json";
     private void readFile()
     {
         // Відкриття файлу file.txt та зчитування його рядків
 
-        try (FileInputStream fis = new FileInputStream(FILE_PATH))
+        try (FileInputStream fis = new FileInputStream("file2.txt"))
         {
             Scanner scanner = new Scanner(fis);
             scanner.nextLine(); // читаємо(пропускаємо) перший рядок "name age" (оскільки даних користувача тут немає)
@@ -50,7 +48,7 @@ public class FileHandler {
     public void clearUserFile()
     {
         // очищення файлу
-        try (FileWriter writer = new FileWriter(USER_FILE_PATH)) {
+        try (FileWriter writer = new FileWriter("user.json")) {
             writer.write("");// очистити файл
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,7 +64,7 @@ public class FileHandler {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(users);
 
-        try (FileOutputStream fos = new FileOutputStream(USER_FILE_PATH)) {
+        try (FileOutputStream fos = new FileOutputStream("user.json")) {
             fos.write(json.getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             e.printStackTrace();
