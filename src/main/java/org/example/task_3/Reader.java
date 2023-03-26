@@ -55,5 +55,21 @@ public class Reader {
         {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
+
     }
+
+    /*Map<String, Integer> map = new HashMap<>();
+        while (scanner.hasNext()) {
+        String s = scanner.nextLine();
+        String[] words = s.split(" ");
+        for (String word : words) {
+            if (!word.equals("")) {
+                if (!map.containsKey(word)) {
+                    map.put(word, 1);
+                } else {
+                    map.put(word, map.get(word) + 1);
+                }
+            }
+        }
+    }*/
 }
