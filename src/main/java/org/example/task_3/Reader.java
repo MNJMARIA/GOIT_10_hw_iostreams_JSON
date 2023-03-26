@@ -48,6 +48,13 @@ public class Reader {
                 result.put(word, count + 1);
             }
         }
+        // виконуємо сортування мапи за значеннями, використовуючи компаратор
+        Comparator<String> comparator = (o1, o2) -> {
+            if (Objects.equals(result.get(o1), result.get(o2))) return 0;
+            return result.get(o1) < result.get(o2) ? 1 : -1;
+        };
+        Map<String, Integer> sortedMap = new TreeMap<>(comparator);
+        sortedMap.putAll(result);
 
         // Entry є вкладеним інтерфейсом в Java-колекції Map,
         // який представляє одну пару ключ-значення в мапі.
@@ -56,10 +63,12 @@ public class Reader {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
 
+
     }
 
-    /*Map<String, Integer> map = new HashMap<>();
-        while (scanner.hasNext()) {
+
+    /*
+    while (scanner.hasNext()) {
         String s = scanner.nextLine();
         String[] words = s.split(" ");
         for (String word : words) {
